@@ -15,7 +15,6 @@
 #
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit from device makefile
@@ -24,6 +23,12 @@ $(call inherit-product, device/samsung/a10s/device.mk)
 # Inherit some common stuff.
 TARGET_BOOT_ANIMATION_RES := 720
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_p.mk)
+
+
+# Call proprietary lpm setup
+$(call inherit-product, vendor/samsung/lpm/lpm-a10s.mk)
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_NAME := lineage_a10s
@@ -35,8 +40,6 @@ PRODUCT_MANUFACTURER := Samsung
 # Build info
 BUILD_FINGERPRINT := "samsung/a10sxx/a10s:11/RP1A.200720.012/A107FXXS8CWD3:user/release-keys"
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    TARGET_DEVICE=a10s \
-    PRODUCT_NAME=a10s \
     PRIVATE_BUILD_DESC="a10sxx-user 11 RP1A.200720.012 A107FXXS8CWD3 release-keys"
 
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
